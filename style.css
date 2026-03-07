@@ -67,7 +67,7 @@ html, body {
 /* ─── 3D Canvas container ─────────────────────────────────────── */
 #app {
   position: fixed;
-  inset: 52px 0 0 0;
+  inset: 52px 0 32px 0;
 }
 
 #app canvas {
@@ -275,6 +275,41 @@ html, body {
   border: none;
   border-top: 1px solid var(--border);
 }
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+.site-footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: rgba(18, 19, 20, 0.88);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+.footer-brand {
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer-sep { color: var(--border); }
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-footer a:hover { color: var(--accent); }
 
 /* ─── Error state ─────────────────────────────────────────────── */
 .load-error {
