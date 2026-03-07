@@ -130,15 +130,58 @@ export class Viewer {
   }
 
   // -------------------------------------------------------------------------
+  // Camera focus — smoothly zoom to a building node
+  // -------------------------------------------------------------------------
+
+  focusOn(node) {
+    node.updateWorldMatrix(true, true);
+    const box    = new Box3().setFromObject(node);
+    const center = box.getCenter(new Vector3());
+    const size   = box.getSize(new Vector3()).length();
+
+    // Position camera at a comfortable distance in front and above the building
+    const offset = Math.max(size * 2, 20);
+    const camTo  = new Vector3(
+      center.x + offset * 0.6,
+      center.y + offset * 0.5,
+      center.z + offset * 0.6
+    );
+
+    this._anim = {
+      camFrom:    this.camera.position.clone(),
+      camTo,
+      targetFrom: this.controls.target.clone(),
+      targetTo:   center.clone(),
+      t: 0,
+    };
+  }
+
+  // -------------------------------------------------------------------------
   // Render loop
   // -------------------------------------------------------------------------
 
   _startLoop() {
     this.renderer.setAnimationLoop(() => {
+      // Smooth camera animation
+      if (this._anim) {
+        this._anim.t += 0.04;
+        const t = this._ease(Math.min(this._anim.t, 1));
+
+        this.camera.position.lerpVectors(this._anim.camFrom, this._anim.camTo, t);
+        this.controls.target.lerpVectors(this._anim.targetFrom, this._anim.targetTo, t);
+
+        if (this._anim.t >= 1) this._anim = null;
+      }
+
       this.controls.update();
       this.renderer.render(this.scene, this.camera);
       this.css2d.render(this.scene, this.camera);
     });
+  }
+
+  // Smooth ease-in-out curve
+  _ease(t) {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
 
   _onResize() {

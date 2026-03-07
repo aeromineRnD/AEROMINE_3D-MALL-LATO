@@ -33,7 +33,7 @@ export class TagManager {
       node.updateWorldMatrix(true, true);
 
       const anchor = this._computeAnchor(node);
-      const tagObj = this._createTag(building, anchor);
+      const tagObj = this._createTag(building, node, anchor);
 
       // Add to scene root so positions are in world space
       this.viewer.scene.add(tagObj);
@@ -56,7 +56,7 @@ export class TagManager {
     );
   }
 
-  _createTag(building, anchorPosition) {
+  _createTag(building, node, anchorPosition) {
     const el = document.createElement('div');
     el.className = 'building-tag';
     el.innerHTML = `
@@ -67,6 +67,7 @@ export class TagManager {
 
     el.addEventListener('click', (e) => {
       e.stopPropagation();
+      this.viewer.focusOn(node);
       this.popup.show(building);
     });
 
