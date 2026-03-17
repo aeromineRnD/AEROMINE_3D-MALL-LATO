@@ -35,6 +35,11 @@ export class Popup {
           <span class="detail-label">Contact</span>
           <span class="contact-val"></span>
         </div>
+        <div class="psd-section" style="display:none">
+          <hr class="panel-divider" />
+          <div class="psd-title">Particle Size Distribution</div>
+          <div class="psd-rows"></div>
+        </div>
       </div>
     `;
 
@@ -73,6 +78,20 @@ export class Popup {
       contactRow.style.display = 'flex';
     } else {
       contactRow.style.display = 'none';
+    }
+
+    const psdSection = p.querySelector('.psd-section');
+    if (building.granulometry?.length) {
+      p.querySelector('.psd-rows').innerHTML = building.granulometry.map(({ sieve, passing }) => `
+        <div class="psd-row">
+          <span class="psd-sieve">${sieve}</span>
+          <div class="psd-bar-wrap"><div class="psd-bar" style="width:${passing}%"></div></div>
+          <span class="psd-pct">${passing}%</span>
+        </div>
+      `).join('');
+      psdSection.style.display = 'block';
+    } else {
+      psdSection.style.display = 'none';
     }
 
     p.classList.add('open');
