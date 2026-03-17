@@ -14,7 +14,7 @@ import { GLTFLoader }    from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 
-const MODEL_URL = '/models/lato.gltf';
+const MODEL_URL = '/models/lato_with_piles.gltf';
 
 export class Viewer {
   constructor(container) {
