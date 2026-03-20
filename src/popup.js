@@ -44,6 +44,9 @@ export class Popup {
             <span class="tonnage-val"></span>
             <span class="tonnage-date"></span>
           </div>
+          <div class="tonnage-warning" style="display:none">
+            ⚠ Low stock — replenishment required
+          </div>
         </div>
         <div class="psd-section" style="display:none">
           <hr class="panel-divider" />
@@ -93,8 +96,32 @@ export class Popup {
     const tonnageSection = p.querySelector('.tonnage-section');
     const dailyEntry = this._piles[building.meshName];
     if (dailyEntry?.tonnes != null) {
-      p.querySelector('.tonnage-val').textContent  = `${dailyEntry.tonnes.toLocaleString()} t`;
+      const t        = dailyEntry.tonnes;
+      const critical = dailyEntry.criticalThreshold ?? 100;
+      const low      = dailyEntry.lowThreshold      ?? 300;
+
+      const status = t < critical ? 'critical' : t < low ? 'low' : 'normal';
+      const warnings = {
+        critical: '⚠ Critical - replenish immediately',
+        low:      '⚠ Low stock - schedule replenishment',
+        normal:   '',
+      };
+
+      const valEl = p.querySelector('.tonnage-val');
+      valEl.textContent = `${t.toLocaleString()} t`;
+      valEl.dataset.status = status;
+
       p.querySelector('.tonnage-date').textContent = this._date ? `as of ${this._date}` : '';
+
+      const warningEl = p.querySelector('.tonnage-warning');
+      if (status !== 'normal') {
+        warningEl.textContent  = warnings[status];
+        warningEl.dataset.status = status;
+        warningEl.style.display = 'flex';
+      } else {
+        warningEl.style.display = 'none';
+      }
+
       tonnageSection.style.display = 'block';
     } else {
       tonnageSection.style.display = 'none';

@@ -1,9 +1,9 @@
 {
   "date": "2026-03-19",
   "piles": {
-    "Sand_Pile":        { "tonnes": 450  },
-    "big_rock_pile":    { "tonnes": 850  },
-    "medium_rock_pile": { "tonnes": 310  },
-    "filler_pile":      { "tonnes": 195  }
+    "Sand_Pile":        { "tonnes": 450, "criticalThreshold": 100, "lowThreshold": 300 },
+    "big_rock_pile":    { "tonnes": 95,  "criticalThreshold": 150, "lowThreshold": 500 },
+    "medium_rock_pile": { "tonnes": 310, "criticalThreshold": 100, "lowThreshold": 400 },
+    "filler_pile":      { "tonnes": 195, "criticalThreshold":  80, "lowThreshold": 250 }
   }
 }

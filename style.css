@@ -324,6 +324,24 @@ html, body {
   color: var(--muted);
 }
 
+.tonnage-val[data-status="critical"] { color: #e74c3c; }
+.tonnage-val[data-status="low"]      { color: #e67e22; }
+.tonnage-val[data-status="normal"]   { color: var(--accent); }
+
+.tonnage-warning {
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tonnage-warning[data-status="critical"] { color: #e74c3c; }
+.tonnage-warning[data-status="low"]      { color: #e67e22; }
+
 /* ─── Particle Size Distribution ─────────────────────────────── */
 .psd-title {
   font-size: 0.65rem;
