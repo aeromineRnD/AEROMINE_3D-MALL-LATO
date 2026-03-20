@@ -1,0 +1,9 @@
+{
+  "date": "2026-03-19",
+  "piles": {
+    "Sand_Pile":        { "tonnes": 450  },
+    "big_rock_pile":    { "tonnes": 850  },
+    "medium_rock_pile": { "tonnes": 310  },
+    "filler_pile":      { "tonnes": 195  }
+  }
+}

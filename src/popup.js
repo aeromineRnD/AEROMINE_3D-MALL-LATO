@@ -1,5 +1,7 @@
 export class Popup {
-  constructor() {
+  constructor(dailyData = {}) {
+    this._piles = dailyData.piles || {};
+    this._date  = dailyData.date  || null;
     this._panel = this._build();
     document.body.appendChild(this._panel);
 
@@ -34,6 +36,14 @@ export class Popup {
         <div class="panel-detail-row contact-row">
           <span class="detail-label">Contact</span>
           <span class="contact-val"></span>
+        </div>
+        <div class="tonnage-section" style="display:none">
+          <hr class="panel-divider" />
+          <div class="psd-title">Today's Stockpile</div>
+          <div class="tonnage-display">
+            <span class="tonnage-val"></span>
+            <span class="tonnage-date"></span>
+          </div>
         </div>
         <div class="psd-section" style="display:none">
           <hr class="panel-divider" />
@@ -78,6 +88,16 @@ export class Popup {
       contactRow.style.display = 'flex';
     } else {
       contactRow.style.display = 'none';
+    }
+
+    const tonnageSection = p.querySelector('.tonnage-section');
+    const dailyEntry = this._piles[building.meshName];
+    if (dailyEntry?.tonnes != null) {
+      p.querySelector('.tonnage-val').textContent  = `${dailyEntry.tonnes.toLocaleString()} t`;
+      p.querySelector('.tonnage-date').textContent = this._date ? `as of ${this._date}` : '';
+      tonnageSection.style.display = 'block';
+    } else {
+      tonnageSection.style.display = 'none';
     }
 
     const psdSection = p.querySelector('.psd-section');

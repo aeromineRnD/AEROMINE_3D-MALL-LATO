@@ -304,6 +304,26 @@ html, body {
   border-top: 1px solid var(--border);
 }
 
+/* ─── Daily Tonnage ───────────────────────────────────────────── */
+.tonnage-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+}
+
+.tonnage-val {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.tonnage-date {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
 /* ─── Particle Size Distribution ─────────────────────────────── */
 .psd-title {
   font-size: 0.65rem;
