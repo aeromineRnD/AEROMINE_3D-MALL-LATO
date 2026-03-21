@@ -1,4 +1,4 @@
-# AEROMINE 3D — Lato Mining Site Viewer
+# AEROMINE 3D - Lato Mining Site Viewer
 
 An interactive 3D facility map for the **Lato open pit mining site**, built with [Three.js](https://threejs.org/) and Vite. Click on any building to fly the camera in and view facility details.
 
@@ -6,11 +6,11 @@ An interactive 3D facility map for the **Lato open pit mining site**, built with
 
 ## Features
 
-- **Photogrammetry-based 3D model** — real-world scan of the Lato mining site
-- **Interactive building tags** — floating labels anchored above each facility
-- **Smooth camera animation** — click a tag to fly the camera to the selected building
-- **Info panel** — slide-in panel with building name, category, description, hours, and contact
-- **Orbit controls** — pan, rotate, and zoom freely after any animation
+- **Photogrammetry-based 3D model** - real-world scan of the Lato mining site
+- **Interactive building tags** - floating labels anchored above each facility
+- **Smooth camera animation** - click a tag to fly the camera to the selected building
+- **Info panel** - slide-in panel with building name, category, description, hours, and contact
+- **Orbit controls** - pan, rotate, and zoom freely after any animation
 
 ---
 
@@ -27,11 +27,11 @@ An interactive 3D facility map for the **Lato open pit mining site**, built with
 
 ## Tech Stack
 
-- [Three.js](https://threejs.org/) — 3D rendering
-- [Vite](https://vitejs.dev/) — build tooling and dev server
-- CSS2DRenderer — HTML tag overlays in 3D space
-- OrbitControls — camera interaction
-- GLTFLoader — photogrammetry model loading
+- [Three.js](https://threejs.org/) - 3D rendering
+- [Vite](https://vitejs.dev/) - build tooling and dev server
+- CSS2DRenderer - HTML tag overlays in 3D space
+- OrbitControls - camera interaction
+- GLTFLoader - photogrammetry model loading
 
 ---
 
